@@ -8,7 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: unzip -o ContactsManager_Android_Project.zip
+      - run: |
+          unzip -o ContactsManager_Android_Project.zip
+          sed -i 's/minSdk = 24/minSdk = 26/g' app/build.gradle.kts
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
@@ -21,4 +23,3 @@ jobs:
         with:
           name: ContactsManager-APK
           path: app/build/outputs/apk/debug/app-debug.apk
-          
